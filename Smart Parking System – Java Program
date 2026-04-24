@@ -1,0 +1,59 @@
+import java.util.Scanner;
+
+public class SmartParkingSystem {
+
+    static int[] parkingSlots = {0, 0, 0, 0, 0}; // 5 slots
+
+    public static void displaySlots() {
+        System.out.println("\nParking Status:");
+        for (int i = 0; i < parkingSlots.length; i++) {
+            if (parkingSlots[i] == 0) {
+                System.out.println("Slot " + (i + 1) + " → Empty");
+            } else {
+                System.out.println("Slot " + (i + 1) + " → Occupied");
+            }
+        }
+    }
+
+   
+    public static void updateSlot(int slot, int status) {
+        if (slot >= 1 && slot <= 5) {
+            parkingSlots[slot - 1] = status;
+            System.out.println("Slot " + slot + " updated!");
+        } else {
+            System.out.println("Invalid slot number!");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            displaySlots();
+
+            System.out.println("\n1. Park Vehicle");
+            System.out.println("2. Remove Vehicle");
+            System.out.println("3. Exit");
+            System.out.print("Enter choice: ");
+
+            int choice = sc.nextInt();
+
+            if (choice == 1) {
+                System.out.print("Enter slot number to park: ");
+                int slot = sc.nextInt();
+                updateSlot(slot, 1); 
+            } 
+            else if (choice == 2) {
+                System.out.print("Enter slot number to free: ");
+                int slot = sc.nextInt();
+                updateSlot(slot, 0); 
+            } 
+            else {
+                System.out.println("Exiting...");
+                break;
+            }
+        }
+
+        sc.close();
+    }
+}
